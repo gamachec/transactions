@@ -11,9 +11,10 @@ import javax.ws.rs.ext.Provider;
 @Slf4j
 @Provider
 public class DistributedTransactionResponseFilter implements ContainerResponseFilter {
+
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
-        log.info("Release DTX");
+        log.info("Clear DTX from thread");
         DistributedTransactionContext.reset();
     }
 }

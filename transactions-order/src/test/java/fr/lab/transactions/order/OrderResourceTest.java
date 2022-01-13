@@ -25,6 +25,7 @@ class OrderResourceTest {
                 .contentType(ContentType.JSON)
                 .when()
                 .body(orderCreation)
+                .header("X-TxId", "1")
                 .post()
                 .then()
                 .statusCode(200)
