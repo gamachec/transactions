@@ -1,8 +1,5 @@
 package fr.lab.transactions.order;
 
-import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import fr.lab.transactions.order.command.OrderCreation;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
@@ -11,11 +8,13 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
+
 @QuarkusTest
 @TestHTTPEndpoint(OrderResource.class)
 @QuarkusTestResource(H2DatabaseTestResource.class)
 class OrderResourceTest {
-    // @formatter:off
 
     @Test
     void testHelloEndpoint() {
@@ -23,16 +22,17 @@ class OrderResourceTest {
         var expected = Order.builder().productId(1).quantity(1).build();
 
         Order actual = given()
-            .contentType(ContentType.JSON)
-            .when()
+                .contentType(ContentType.JSON)
+                .when()
                 .body(orderCreation)
                 .post()
-            .then()
+                .then()
                 .statusCode(200)
                 .extract().as(Order.class);
 
         assertThat(actual)
-            .usingRecursiveComparison()
-            .isEqualTo(expected);
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .isEqualTo(expected);
     }
 }

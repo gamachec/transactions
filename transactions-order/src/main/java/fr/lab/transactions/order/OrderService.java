@@ -1,13 +1,15 @@
 package fr.lab.transactions.order;
 
+import fr.lab.transactions.order.command.OrderCreation;
+import fr.lab.transactions.tx.DistributedTransaction;
+import lombok.RequiredArgsConstructor;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
-import fr.lab.transactions.order.command.OrderCreation;
-import lombok.RequiredArgsConstructor;
-
 @ApplicationScoped
 @RequiredArgsConstructor
+@DistributedTransaction
 @Transactional(rollbackOn = Exception.class)
 public class OrderService {
 
