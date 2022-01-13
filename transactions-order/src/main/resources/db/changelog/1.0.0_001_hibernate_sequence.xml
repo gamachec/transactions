@@ -7,7 +7,7 @@
     http://www.liquibase.org/xml/ns/dbchangelog
     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
-    <changeSet id="1.0.0_001_hibernate_sequence" author="cgamache" dbms="postgresql,oracle">
+    <changeSet id="1.0.0_001_hibernate_sequence" author="cgamache">
         <createSequence sequenceName="hibernate_sequence"/>
     </changeSet>
 </databaseChangeLog>

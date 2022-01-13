@@ -8,7 +8,9 @@ import javax.ws.rs.core.MediaType;
 
 import fr.lab.transactions.order.command.OrderCreation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Path("/order")
 @RequiredArgsConstructor
 public class OrderResource {
@@ -19,6 +21,7 @@ public class OrderResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Order createOrder(final OrderCreation orderCreation) {
+        log.info("createOrder {}", orderCreation);
         return orderService.createOrder(orderCreation);
     }
 }
