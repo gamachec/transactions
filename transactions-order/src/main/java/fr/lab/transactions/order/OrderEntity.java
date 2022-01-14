@@ -1,25 +1,22 @@
 package fr.lab.transactions.order;
 
-import fr.lab.transactions.tx.PanacheTransactionalEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
+@Audited
 @Table(name = "ORDERS")
-public class OrderEntity extends PanacheTransactionalEntity {
+public class OrderEntity extends PanacheEntity {
 
     private long productId;
 
     private int quantity;
-
-    public static List<OrderEntity> findByTransactionId(long transactionId) {
-        return list("transactionId", transactionId);
-    }
 }
 
